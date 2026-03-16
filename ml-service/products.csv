@@ -1,0 +1,21 @@
+product_id,name,category,price,brand,description
+P001,Hammer,Tools,15.99,Stanley,16 oz claw hammer
+P002,Screwdriver Set,Tools,25.99,Dewalt,8-piece screwdriver set
+P003,Electric Drill,Tools,89.99,Bosch,18V cordless drill
+P004,LED Light Bulb,Electrical,4.99,Philips,60W equivalent LED bulb
+P005,Extension Cord,Electrical,12.99,GE,10 ft 3-prong extension cord
+P006,Wire Stripper,Electrical,8.99,Klein,Tool for stripping wires
+P007,Water Pipe,Plumbing,15.99,SharkBite,1/2 inch copper pipe
+P008,Faucet,Plumbing,45.99,Delta,Bathroom faucet
+P009,Toilet Plunger,Plumbing,7.99,Simple,Heavy-duty plunger
+P010,Paint Brush,Paint,6.99,Purdy,2 inch angled brush
+P011,Paint Roller,Paint,8.99,Wooster,9 inch roller frame
+P012,Paint Tray,Paint,4.99,QualiTech,Plastic paint tray
+P013,Nails,Hardware,3.99,Grip-Rite,1 lb box of 2 inch nails
+P014,Screws,Hardware,4.99,Grip-Rite,Assorted wood screws
+P015,Padlock,Hardware,7.99,Master Lock,Keyed padlock
+P016,Shovel,Garden,19.99,Fiskars,Round point shovel
+P017,Pruning Shears,Garden,14.99,Fiskars,Bypass pruner
+P018,Garden Hose,Garden,24.99,Gilmour,50 ft garden hose
+P019,Lumber,Lumber,12.99,HomeStore,2x4x8 treated lumber
+P020,Plywood,Lumber,24.99,HomeStore,4x8 plywood sheet

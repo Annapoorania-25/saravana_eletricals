@@ -1,0 +1,9 @@
+{
+  "name": "hardware-store-ml-service",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "call run_ml_service.bat",
+    "start": "call run_ml_service.bat"
+  }
+}

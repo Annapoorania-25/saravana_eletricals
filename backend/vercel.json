@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "5000",
+    "MONGO_URI": "mongodb://127.0.0.1:27017/hardware_store",
+    "JWT_SECRET": "hardware_store_secret",
+    "CLOUDINARY_CLOUD_NAME": "dkcednrha",
+    "CLOUDINARY_API_KEY": "713328356493765",
+    "CLOUDINARY_API_SECRET": "kjnfx2Dfi7BQGY20k_4fULQrSLQ",
+    "ML_SERVICE_URL": "http://localhost:5001"
+  }
+}

@@ -1,0 +1,22 @@
+
+# Node
+node_modules/
+**/node_modules/
+
+# Env
+.env
+*.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
