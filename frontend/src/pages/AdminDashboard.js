@@ -7,7 +7,6 @@ import {
   FaShoppingCart, 
   FaChartLine, 
   FaSync,
-  FaTrendingUp,
   FaArrowUp,
   FaArrowDown,
   FaClock,
@@ -131,7 +130,7 @@ const AdminDashboard = () => {
                 </div>
               </div>
               <div className="d-flex align-items-center gap-2">
-                <FaTrendingUp size={14} className="text-success" />
+                <FaArrowUp size={14} className="text-success" />
                 <small className="text-success fw-semibold">Growing community</small>
               </div>
             </Card.Body>
