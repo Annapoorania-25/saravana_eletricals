@@ -79,11 +79,12 @@ const ARViewerPage = () => {
   // Auto-open AR on mobile when model loads
   useEffect(() => {
     if (isMobile && modelUrl && modelViewerRef.current) {
+      // Increase delay and ensure model is fully loaded before AR activation
       const timer = setTimeout(() => {
         if (modelViewerRef.current?.activateAR) {
           modelViewerRef.current.activateAR();
         }
-      }, 1200); // delay for loading
+      }, 2000); // Increased delay to ensure full model load
 
       return () => clearTimeout(timer);
     }
@@ -277,7 +278,7 @@ const ARViewerPage = () => {
                 ar
                 ar-modes="scene-viewer quick-look webxr"
                 ar-scale="fixed"
-                ar-placement="floor"
+                ar-placement="wall"
                 camera-controls
                 auto-rotate
                 shadow-intensity="1"
@@ -308,7 +309,7 @@ const ARViewerPage = () => {
                         <meshStandardMaterial color="#007bff" />
                       </mesh>
                     )}
-                    <Environment preset="city" />
+                    <Environment preset="neutral" />
                   </Suspense>
 
                   <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
