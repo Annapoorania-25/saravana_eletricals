@@ -313,7 +313,7 @@ const ARViewerPage = () => {
                         <meshStandardMaterial color="#007bff" />
                       </mesh>
                     )}
-                    <Environment preset="neutral" />
+                    <Environment preset="studio" />
                   </Suspense>
 
                   <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
