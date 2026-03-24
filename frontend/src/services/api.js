@@ -30,28 +30,19 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error.response?.data?.message || error.message;
-    const isCriticalEndpoint = error.config?.url && 
-      (error.config.url.includes('profile') || 
-       error.config.url.includes('orders') || 
-       error.config.url.includes('cart') ||
-       error.config.url.includes('auth') ||
-       error.config.url.includes('products') && error.config.method !== 'get');
+    const isOptionalEndpoint = error.config?.url?.includes('/recommendations');
     
     if (error.response?.status === 401) {
-      // For critical endpoints, redirect to login
-      // For optional endpoints like recommendations, just reject silently
-      if (isCriticalEndpoint) {
+      // Only redirect/show toast for critical 401 errors (not recommendations)
+      if (!isOptionalEndpoint) {
         localStorage.removeItem('userInfo');
         localStorage.removeItem('token');
         window.location.href = '/login';
         toast.error('Session expired. Please login again.');
       }
-      // Don't show toast for recommendations to avoid interrupting user experience
-    } else if (error.response?.status && error.response.status >= 500) {
-      toast.error('Server error: ' + message);
-    } else if (error.response?.status >= 400) {
-      // Don't spam toast for every 4xx error
-      console.error(message);
+      // For optional endpoints, fail silently to allow fallback behavior
+    } else {
+      toast.error(message);
     }
     
     return Promise.reject(error);
