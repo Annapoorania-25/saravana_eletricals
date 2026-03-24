@@ -508,6 +508,20 @@ img {
 .card {
   width: 100%;
   overflow: hidden;
+  position: relative;
+}
+
+.card .position-absolute {
+  z-index: 10;
+  max-width: 90%;
+}
+
+.card .badge.position-absolute {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Mobile-friendly buttons */
@@ -586,8 +600,10 @@ table {
 
 /* Badge responsive */
 .badge {
-  white-space: normal;
+  white-space: nowrap;
   word-break: break-word;
+  max-width: 100%;
+  display: inline-block;
 }
 
 /* Carousel responsive */

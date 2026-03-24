@@ -346,12 +346,31 @@ const HomePage = () => {
         .min-vh-50 {
           min-height: 50vh;
         }
+        
+        /* Badge responsive styling */
+        .product-card .badge {
+          white-space: nowrap;
+          font-size: 0.75rem;
+          padding: 0.4rem 0.6rem !important;
+        }
+        
         @media (max-width: 768px) {
           .hero-section {
             min-height: 400px;
           }
           .display-3 {
             font-size: 2rem;
+          }
+          
+          /* Hide or adjust badge on mobile */
+          .product-card .badge {
+            display: none;
+          }
+        }
+        
+        @media (max-width: 576px) {
+          .product-card .badge {
+            display: none;
           }
         }
       `}</style>
