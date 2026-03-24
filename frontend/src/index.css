@@ -11,12 +11,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f8f9fa;
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
+  overflow-x: hidden;
 }
 
 main {
   min-height: 80vh;
-  padding: 0 10px;
+  padding: clamp(8px, 2vw, 20px);
 }
 
 h1, h2, h3, h4 {
@@ -462,5 +463,229 @@ h1, h2, h3, h4 {
 
   .btn:active {
     transform: scale(0.98);
+  }
+}
+
+/* ============================================ */
+/* ADDITIONAL MOBILE ALIGNMENT FIXES */
+/* ============================================ */
+
+/* Prevent overflow on all mobile devices */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Fix navbar overflow issues */
+.navbar-collapse {
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+}
+
+/* Responsive container padding */
+.container,
+.container-fluid {
+  width: 100%;
+  padding-left: clamp(8px, 2%, 20px);
+  padding-right: clamp(8px, 2%, 20px);
+}
+
+/* Row negative margins fix */
+.row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure images don't overflow */
+.img-fluid,
+.img-fit-cover,
+img {
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* Fix card layouts on mobile */
+.card {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Mobile-friendly buttons */
+button,
+.btn {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  min-height: 44px;
+}
+
+/* Fix form groups alignment */
+.form-group {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.form-control,
+.form-select,
+.form-check-input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive text without horizontal scroll */
+h1, h2, h3, h4, h5, h6,
+p, span, a, button {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Fix navbar brand sizing */
+.navbar-brand {
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  white-space: nowrap;
+}
+
+/* Fix nav links spacing */
+.nav-link {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Responsive footer */
+footer {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+footer .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Fix table overflow */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  table-layout: auto;
+}
+
+/* Responsive modals */
+.modal-dialog {
+  max-height: 90vh;
+  margin: auto;
+}
+
+/* Badge responsive */
+.badge {
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Carousel responsive */
+.carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  width: 100%;
+}
+
+/* Dropdown menu alignment */
+.dropdown-menu {
+  position: fixed;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 575.98px) {
+  /* Remove all horizontal margins that could cause overflow */
+  * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Fix nested element spacing */
+  .container-fluid > *,
+  .container > * {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Responsive spacing */
+  .px-1, .px-2, .px-3, .px-4, .px-5 {
+    padding-left: clamp(4px, 2vw, 12px) !important;
+    padding-right: clamp(4px, 2vw, 12px) !important;
+  }
+
+  .mx-1, .mx-2, .mx-3, .mx-4, .mx-5,
+  .me-1, .me-2, .me-3, .me-4, .me-5,
+  .ms-1, .ms-2, .ms-3, .ms-4, .ms-5 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Section full width */
+  section, article, main {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding-left: clamp(8px, 2vw, 16px);
+    padding-right: clamp(8px, 2vw, 16px);
+  }
+
+  /* Card alignment */
+  .row:not(.no-gutters) {
+    margin-left: -clamp(4px, 1vw, 8px);
+    margin-right: -clamp(4px, 1vw, 8px);
+  }
+
+  .row:not(.no-gutters) > [class*='col-'] {
+    padding-left: clamp(4px, 1vw, 8px);
+    padding-right: clamp(4px, 1vw, 8px);
+  }
+
+  /* Mobile nav bar must not wrap */
+  nav, .navbar {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Search bar responsive */
+  .form-control,
+  input[type="search"] {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  /* Text input fix for iOS */
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="search"],
+  input[type="number"] {
+    font-size: 16px !important;
+    border-radius: 8px;
+    padding: 10px 12px;
+    -webkit-appearance: none;
+    appearance: none;
   }
 }
