@@ -16,6 +16,7 @@ function Model({ url }) {
   const ref = useRef();
 
   // Normalize scale/position so the model fits nicely in the view regardless of source units
+  // Using reduced scale (0.8) for better AR mobile appearance - larger scale made objects too big
   useEffect(() => {
     if (!ref.current) return;
 
@@ -25,7 +26,7 @@ function Model({ url }) {
     const center = box.getCenter(new THREE.Vector3());
 
     const maxDimension = Math.max(size.x, size.y, size.z);
-    const scale = maxDimension === 0 ? 1 : 2 / maxDimension;
+    const scale = maxDimension === 0 ? 1 : 0.8 / maxDimension;
 
     ref.current.scale.setScalar(scale);
     ref.current.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
