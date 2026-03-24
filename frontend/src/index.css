@@ -16,6 +16,7 @@ body {
 
 main {
   min-height: 80vh;
+  padding: 0 10px;
 }
 
 h1, h2, h3, h4 {
@@ -110,16 +111,356 @@ h1, h2, h3, h4 {
   min-height: 80vh;
 }
 
-@media (max-width: 768px) {
+/* ============================================ */
+/* RESPONSIVE DESIGN - MOBILE FIRST APPROACH */
+/* ============================================ */
+
+/* Extra Small Devices (xs: < 576px) */
+@media (max-width: 575.98px) {
+  body {
+    font-size: 16px;
+  }
+
+  main {
+    min-height: auto;
+    padding: 0 8px;
+  }
+
+  h1 {
+    font-size: 1.5rem !important;
+    margin: 0.75rem 0 !important;
+  }
+
+  h2 {
+    font-size: 1.25rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  h3 {
+    font-size: 1.1rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  h4 {
+    font-size: 1rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  /* Carousel */
   .carousel-item {
     height: 200px;
   }
-  
+
+  /* Product Cards */
   .product-card {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
-  
+
+  .img-fit-cover {
+    height: 150px;
+  }
+
+  /* Admin Sidebar */
   .admin-sidebar {
     min-height: auto;
+    padding: 15px;
+  }
+
+  .admin-sidebar a {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  /* AR Viewer */
+  .ar-viewer {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .ar-sidebar {
+    max-width: 100%;
+    min-width: auto;
+    margin: 8px;
+    padding: 15px;
+    height: auto;
+    max-height: 400px;
+  }
+
+  .ar-canvas {
+    margin: 8px;
+    min-height: 300px;
+  }
+
+  /* Container Adjustments */
+  .container-fluid {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  /* Button Text */
+  button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  /* Form Elements */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  /* Table Responsive */
+  table {
+    font-size: 0.85rem;
+  }
+
+  thead th {
+    padding: 0.5rem !important;
+  }
+
+  tbody td {
+    padding: 0.5rem !important;
+  }
+
+  /* Typography */
+  .display-6 {
+    font-size: 1.5rem !important;
+  }
+
+  .display-5 {
+    font-size: 1.3rem !important;
+  }
+
+  .display-4 {
+    font-size: 1.2rem !important;
+  }
+
+  /* Spacing Utilities */
+  .p-4 {
+    padding: 1rem !important;
+  }
+
+  .m-3,
+  .mx-3,
+  .my-3 {
+    margin: 0.5rem !important;
+  }
+
+  .p-3 {
+    padding: 0.75rem !important;
+  }
+
+  /* Section Spacing */
+  .py-5 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .mb-5 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* Alerts and Messages */
+  .alert {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  /* Cards */
+  .card {
+    margin-bottom: 1rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  /* Grid Adjustments */
+  .row {
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+
+  [class*='col-'] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0.5rem 0 !important;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem !important;
+  }
+
+  /* Modal */
+  .modal-content {
+    border-radius: 8px;
+  }
+
+  .modal-header {
+    padding: 0.75rem;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  /* Form Input */
+  .form-control,
+  .form-select {
+    padding: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* Badge */
+  .badge {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  /* Tab Navigation */
+  .nav-tabs {
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.9rem;
+  }
+
+  /* Flex Utilities */
+  .d-flex {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .gap-2 {
+    gap: 0.5rem !important;
+  }
+
+  .gap-3 {
+    gap: 0.75rem !important;
+  }
+
+  /* List Items */
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Image Responsiveness */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Small Devices (sm: 576px - 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .carousel-item {
+    height: 250px;
+  }
+
+  .img-fit-cover {
+    height: 180px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  .ar-sidebar {
+    max-width: 320px;
+    min-width: 280px;
+  }
+
+  .ar-canvas {
+    margin: 12px;
+  }
+
+  .container-fluid {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Medium Devices (md: 768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .carousel-item {
+    height: 300px;
+  }
+
+  .img-fit-cover {
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .ar-sidebar {
+    max-width: 340px;
+  }
+}
+
+/* Large Devices (lg: 992px and up) */
+@media (min-width: 992px) {
+  .carousel-item {
+    height: 400px;
+  }
+
+  .img-fit-cover {
+    height: 200px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Tablet Landscape Fix */
+@media (max-width: 768px) and (orientation: landscape) {
+  .carousel-item {
+    height: 150px;
+  }
+
+  .ar-viewer {
+    height: auto;
+  }
+
+  .ar-sidebar {
+    max-height: 300px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a,
+  .btn {
+    padding: 0.6rem 1rem;
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  input[type='submit'],
+  input[type='button'] {
+    min-height: 48px;
+  }
+
+  .card:active {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
   }
 }

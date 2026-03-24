@@ -39,23 +39,24 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* Search Bar */}
-            <Form className="d-flex mx-auto" style={{ width: '40%' }} onSubmit={submitSearchHandler}>
+            {/* Search Bar - Responsive */}
+            <Form className="d-flex mx-auto flex-fill flex-lg-grow-1" style={{ width: '100%', maxWidth: '400px', margin: '0.5rem auto' }} onSubmit={submitSearchHandler}>
               <FormControl
                 type="search"
                 placeholder="Search products..."
                 className="me-2 rounded-pill"
+                style={{ fontSize: 'clamp(0.9rem, 2vw, 1rem)', padding: 'clamp(0.4rem, 1vw, 0.6rem)' }}
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
               />
-              <Button type="submit" variant="outline-light" className="rounded-pill">
+              <Button type="submit" variant="outline-light" className="rounded-pill" style={{ minWidth: '44px' }}>
                 <FaSearch />
               </Button>
             </Form>
 
-            <Nav className="ms-auto">
+            <Nav className="ms-auto d-flex flex-column flex-lg-row align-items-start align-lg-items-center gap-2 gap-lg-0">
               {/* Home Link */}
-              <Nav.Link as={Link} to="/" className="mx-2">
+              <Nav.Link as={Link} to="/" className="mx-lg-2">
                 <FaHome /> Home
               </Nav.Link>
 
