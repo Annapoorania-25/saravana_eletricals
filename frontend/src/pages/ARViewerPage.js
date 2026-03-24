@@ -287,7 +287,6 @@ const ARViewerPage = () => {
                 auto-rotate
                 shadow-intensity="1"
                 exposure="1"
-                environment-image="neutral"
                 style={{ width: 0, height: 0, position: 'absolute', left: -9999 }}
               />
             )}
