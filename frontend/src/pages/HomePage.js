@@ -110,19 +110,19 @@ const HomePage = () => {
               <Row className="mt-5 g-4">
                 <Col xs={6} md={3}>
                   <div className="text-center">
-                    <h3 className="h2 fw-bold mb-0">{stats.products}+</h3>
+                    <h3 className="h2 fw-bold mb-0">100+</h3>
                     <small>Products</small>
                   </div>
                 </Col>
                 <Col xs={6} md={3}>
                   <div className="text-center">
-                    <h3 className="h2 fw-bold mb-0">{stats.customers}K+</h3>
+                    <h3 className="h2 fw-bold mb-0">50+</h3>
                     <small>Happy Customers</small>
                   </div>
                 </Col>
                 <Col xs={6} md={3}>
                   <div className="text-center">
-                    <h3 className="h2 fw-bold mb-0">{stats.deliveries}K+</h3>
+                    <h3 className="h2 fw-bold mb-0">10+</h3>
                     <small>Deliveries</small>
                   </div>
                 </Col>

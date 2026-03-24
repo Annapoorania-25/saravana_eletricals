@@ -14,11 +14,9 @@ const authService = {
   },
 
   async register(userData) {
+    // Don't automatically log in after registration - user must log in manually
+    // This allows the redirect to /login to work properly
     const response = await api.post('/auth/register', userData);
-    if (response.data.token) {
-      localStorage.setItem(TOKEN_KEY, response.data.token);
-      localStorage.setItem(USER_KEY, JSON.stringify(response.data));
-    }
     return response.data;
   },
 

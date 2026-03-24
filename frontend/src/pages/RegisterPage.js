@@ -51,10 +51,12 @@ const RegisterPage = () => {
 
     try {
       dispatch(setLoading(true));
-      const data = await register({ name, email, password, phone });
-      dispatch(setUserInfo(data));
-      toast.success('Registration successful!');
+      await register({ name, email, password, phone });
+      dispatch(setLoading(false));
+      toast.success('Registration successful! Please login.');
+      navigate('/login');
     } catch (err) {
+      dispatch(setLoading(false));
       dispatch(setError(err.response?.data?.message || err.message));
     }
   };

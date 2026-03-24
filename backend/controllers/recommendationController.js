@@ -2,14 +2,20 @@ const axios = require('axios');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
 
-// @desc    Get product recommendations
-// @route   GET /api/recommendations
-// @access  Private
 const getRecommendations = async (req, res) => {
   // Keep purchase history available for fallback logic even if ML call fails early
   let purchaseHistory = [];
 
   try {
+    // If user is not authenticated, return popular products
+    if (!req.user) {
+      const popularProducts = await Product.find().sort({ numReviews: -1 }).limit(10);
+      return res.json({
+        recommendations: popularProducts,
+        explanation: 'Popular products',
+      });
+    }
+
     // Get user's purchase history
     const userOrders = await Order.find({ user: req.user._id })
       .populate('orderItems.product');
@@ -92,6 +98,15 @@ const getRecommendations = async (req, res) => {
 
     // Fallback: compute "also bought" recommendations based on co-purchase history
     try {
+      // Only apply co-purchase logic if user is authenticated
+      if (!req.user) {
+        const fallbackProducts = await Product.find().sort({ createdAt: -1 }).limit(10);
+        return res.json({
+          recommendations: fallbackProducts,
+          explanation: 'New arrivals',
+        });
+      }
+
       const userProductIds = purchaseHistory.map((item) => item.productId);
       const mongoose = require('mongoose');
       const objectIds = userProductIds
