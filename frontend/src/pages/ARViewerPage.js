@@ -11,12 +11,15 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { getProductById, updateProduct } from '../services/api';
 
-function Model({ url }) {
+function Model({ url, forAR = false }) {
   const { scene } = useGLTF(url);
   const ref = useRef();
 
-  // Normalize scale/position so the model fits nicely in the view regardless of source units
-  // Using reduced scale (0.8) for better AR mobile appearance - larger scale made objects too big
+  // Use different scales for AR (mobile) vs desktop 3D viewer
+  // Mobile AR: 0.8 (smaller, suitable for placing in room)
+  // Desktop 3D: 2.5 (larger, for clear desktop viewing)
+  const targetScale = forAR ? 0.8 : 2.5;
+
   useEffect(() => {
     if (!ref.current) return;
 
@@ -26,11 +29,11 @@ function Model({ url }) {
     const center = box.getCenter(new THREE.Vector3());
 
     const maxDimension = Math.max(size.x, size.y, size.z);
-    const scale = maxDimension === 0 ? 1 : 0.8 / maxDimension;
+    const scale = maxDimension === 0 ? 1 : targetScale / maxDimension;
 
     ref.current.scale.setScalar(scale);
     ref.current.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
-  }, [url]);
+  }, [url, targetScale]);
 
   return <primitive ref={ref} object={scene} />;
 }
@@ -303,7 +306,7 @@ const ARViewerPage = () => {
 
                   <Suspense fallback={null}>
                     {modelUrl ? (
-                      <Model url={modelUrl} />
+                      <Model url={modelUrl} forAR={false} />
                     ) : (
                       <mesh position={[0, 0.5, 0]}>
                         <boxGeometry args={[3, 3, 3]} />
