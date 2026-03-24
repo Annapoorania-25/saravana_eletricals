@@ -6,7 +6,7 @@ import {
   FaBox,
   FaShoppingCart,
   FaChartLine,
-  FaRefresh,
+  FaSync,
   FaExclamationTriangle,
   FaCheckCircle,
   FaTrendingUp,
@@ -107,7 +107,7 @@ const AdminDashboard = () => {
           disabled={refreshing}
           className="d-flex align-items-center gap-2"
         >
-          <FaRefresh className={refreshing ? 'spinner' : ''} />
+          <FaSync className={refreshing ? 'spinner' : ''} />
           {refreshing ? 'Refreshing...' : 'Refresh'}
         </Button>
       </div>
