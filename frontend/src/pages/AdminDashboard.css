@@ -365,4 +365,5 @@ a.text-decoration-none:hover {
 button:not(:disabled):hover {
   transform: translateY(-1px);
 }
-}
+
+/* End of AdminDashboard Styles */
