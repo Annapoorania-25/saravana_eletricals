@@ -46,9 +46,11 @@ const LoginPage = () => {
       dispatch(setLoading(true));
       const data = await authService.login(email, password);
       dispatch(setUserInfo(data));
+      dispatch(setLoading(false));
       toast.success(`Welcome back, ${data.name}!`);
       navigate(redirect);
     } catch (err) {
+      dispatch(setLoading(false));
       dispatch(setError(err.response?.data?.message || 'Invalid email or password'));
     }
   };
