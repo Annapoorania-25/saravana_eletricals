@@ -15,21 +15,28 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phone, setPhone] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
   const { userInfo, loading, error } = useSelector((state) => state.user);
 
+  // Clear previous errors when register page loads
   useEffect(() => {
-    if (userInfo) {
+    dispatch(setError(null));
+  }, [dispatch]);
+
+  useEffect(() => {
+    // Redirect to home/admin only if user is already logged in AND not in register flow
+    if (userInfo && !isRegistering) {
       if (userInfo.role === 'admin') {
         navigate('/admin');
       } else {
         navigate('/');
       }
     }
-  }, [userInfo, navigate]);
+  }, [userInfo, navigate, isRegistering]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -50,6 +57,7 @@ const RegisterPage = () => {
     }
 
     try {
+      setIsRegistering(true);
       dispatch(setLoading(true));
       await register({ name, email, password, phone });
       dispatch(setLoading(false));
@@ -58,6 +66,8 @@ const RegisterPage = () => {
     } catch (err) {
       dispatch(setLoading(false));
       dispatch(setError(err.response?.data?.message || err.message));
+    } finally {
+      setIsRegistering(false);
     }
   };
 

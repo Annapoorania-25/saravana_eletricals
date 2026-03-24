@@ -24,6 +24,11 @@ const LoginPage = () => {
   const query = new URLSearchParams(location.search);
   const redirect = query.get('redirect') || '/';
 
+  // Clear previous errors when login page loads
+  useEffect(() => {
+    dispatch(setError(null));
+  }, [dispatch]);
+
   useEffect(() => {
     if (userInfo) {
       if (userInfo.role === 'admin') {
