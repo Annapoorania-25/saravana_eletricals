@@ -76,6 +76,19 @@ const ARViewerPage = () => {
     }
   }, [productId]);
 
+  // Auto-open AR on mobile when model loads
+  useEffect(() => {
+    if (isMobile && modelUrl && modelViewerRef.current) {
+      const timer = setTimeout(() => {
+        if (modelViewerRef.current?.activateAR) {
+          modelViewerRef.current.activateAR();
+        }
+      }, 1200); // delay for loading
+
+      return () => clearTimeout(timer);
+    }
+  }, [isMobile, modelUrl]);
+
   // Cleanup any object URLs when the selected model changes / component unmounts
   useEffect(() => {
     return () => {
@@ -205,21 +218,25 @@ const ARViewerPage = () => {
               </div>
             ) : (
               <div className="text-muted small mb-3">
-                {isAdmin
+                {isMobile
+                  ? '📱 AR is loading automatically...'
+                  : isAdmin
                   ? 'Model is loaded. You can upload a new model to replace it.'
-                  : 'Model is loaded. You can inspect it and use AR (mobile only).'}
+                  : 'Model is loaded. You can inspect it below.'}
               </div>
             )}
 
-            <Button
-              variant="info"
-              className="mb-3"
-              onClick={handleViewInAR}
-              disabled={arButtonDisabled || !modelUrl}
-              title={modelUrl ? arButtonTitle : 'Upload a model first to enable AR.'}
-            >
-              View in AR
-            </Button>
+            {!isMobile && (
+              <Button
+                variant="info"
+                className="mb-3"
+                onClick={handleViewInAR}
+                disabled={!modelUrl}
+                title={modelUrl ? 'Open AR on mobile device' : 'Upload a model first to enable AR.'}
+              >
+                View in AR
+              </Button>
+            )}
 
             {isAdmin ? (
               <Message variant="info" className="mt-3">
@@ -258,67 +275,47 @@ const ARViewerPage = () => {
                 src={modelUrl}
                 alt={product.name}
                 ar
-                ar-modes="webxr scene-viewer quick-look"
+                ar-modes="scene-viewer quick-look webxr"
+                ar-scale="fixed"
+                ar-placement="floor"
                 camera-controls
+                auto-rotate
                 shadow-intensity="1"
+                exposure="1"
+                environment-image="neutral"
                 style={{ width: 0, height: 0, position: 'absolute', left: -9999 }}
               />
             )}
           </div>
 
-          <div className="ar-canvas flex-grow-1">
-            <div className="ar-container" style={{ height: '80vh', width: '100%' }}>
-              <Canvas
-                shadows
-                camera={{ position: [0, 2, 5], fov: 55 }}
-                style={{ width: '100%', height: '100%', touchAction: 'none' }}
-                gl={{ antialias: true }}
-              >
-                <ambientLight intensity={0.3} />
-                <directionalLight
-                  castShadow
-                  position={[5, 10, 5]}
-                  intensity={1}
-                  shadow-mapSize-width={1024}
-                  shadow-mapSize-height={1024}
-                  shadow-camera-left={-10}
-                  shadow-camera-right={10}
-                  shadow-camera-top={10}
-                  shadow-camera-bottom={-10}
-                />
-                <hemisphereLight skyColor="#ffffff" groundColor="#444444" intensity={0.5} />
+          {!isMobile && (
+            <div className="ar-canvas flex-grow-1">
+              <div className="ar-container" style={{ height: '80vh', width: '100%' }}>
+                <Canvas
+                  camera={{ position: [0, 2, 5], fov: 55 }}
+                  style={{ width: '100%', height: '100%', touchAction: 'none' }}
+                  gl={{ antialias: true }}
+                >
+                  <ambientLight intensity={0.5} />
+                  <directionalLight position={[5, 10, 5]} intensity={1} />
 
-                {/* Desktop/unsupported AR fallback — 3D preview with orbit controls */}
-                <gridHelper args={[20, 20, '#888', '#444']} position={[0, -1.5, 0]} />
-                <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.51, 0]} receiveShadow>
-                  <planeGeometry args={[20, 20]} />
-                  <meshStandardMaterial color="#222" opacity={0.4} transparent />
-                </mesh>
-                <ContactShadows
-                  position={[0, -1.5, 0]}
-                  opacity={0.5}
-                  width={20}
-                  height={20}
-                  blur={2}
-                  far={10}
-                />
+                  <Suspense fallback={null}>
+                    {modelUrl ? (
+                      <Model url={modelUrl} />
+                    ) : (
+                      <mesh position={[0, 0.5, 0]}>
+                        <boxGeometry args={[3, 3, 3]} />
+                        <meshStandardMaterial color="#007bff" />
+                      </mesh>
+                    )}
+                    <Environment preset="city" />
+                  </Suspense>
 
-                <Suspense fallback={<Html center><div style={{ color: 'white' }}>Loading...</div></Html>}>
-                  {modelUrl ? (
-                    <Model url={modelUrl} />
-                  ) : (
-                    <mesh position={[0, 0.5, 0]} castShadow>
-                      <boxGeometry args={[3, 3, 3]} />
-                      <meshStandardMaterial color="#007bff" />
-                    </mesh>
-                  )}
-                  <Environment preset="city" />
-                </Suspense>
-
-                <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
-              </Canvas>
+                  <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+                </Canvas>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </Container>
     </>
