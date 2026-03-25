@@ -598,6 +598,29 @@ table {
   margin: auto;
 }
 
+/* ============================================ */
+/* HIDE SCROLLBARS */
+/* ============================================ */
+
+/* Hide scrollbars for all browsers - overflow-auto elements */
+.overflow-auto {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.overflow-auto::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+/* Navbar scrollbars */
+.navbar.overflow-auto {
+  scrollbar-width: none;
+}
+
+.navbar.overflow-auto::-webkit-scrollbar {
+  display: none;
+}
+
 /* Badge responsive */
 .badge {
   white-space: nowrap;

@@ -130,9 +130,16 @@ const Header = () => {
 
       {/* Secondary Navigation Bar (hidden for admin) */}
       {userInfo?.role !== 'admin' && (
-        <Navbar bg="light" variant="light" className="py-2 shadow-sm overflow-auto">
+        <Navbar bg="light" variant="light" className="py-2 shadow-sm overflow-auto" style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}>
           <Container fluid>
-            <Nav className="w-100 d-flex justify-content-start overflow-auto" style={{ whiteSpace: 'nowrap' }}>
+            <Nav className="w-100 d-flex justify-content-start overflow-auto" style={{ 
+              whiteSpace: 'nowrap',
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+            }}>
               <Nav.Link as={Link} to="/products?category=Tools" className="text-dark flex-shrink-0" style={{ padding: '0.25rem 0.75rem' }}>
                 🔧 Tools
               </Nav.Link>

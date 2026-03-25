@@ -210,9 +210,6 @@ const AdminDashboard = () => {
                 <Button as={Link} to="/admin/orders" className="w-100 rounded-3" variant="info">
                   Manage Orders
                 </Button>
-                <Button as={Link} to="/admin/users" className="w-100 rounded-3" variant="success">
-                  Manage Users
-                </Button>
               </Card.Body>
             </Card>
           </Col>
