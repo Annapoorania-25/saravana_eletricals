@@ -16,9 +16,9 @@ function Model({ url, forAR = false }) {
   const ref = useRef();
 
   // Use different scales for AR (mobile) vs desktop 3D viewer
-  // Mobile AR: 0.8 (smaller, suitable for placing in room)
+  // Mobile AR: 0.3 (much smaller, optimized for room placement with rotation)
   // Desktop 3D: 2.5 (larger, for clear desktop viewing)
-  const targetScale = forAR ? 0.8 : 2.5;
+  const targetScale = forAR ? 0.3 : 2.5;
 
   useEffect(() => {
     if (!ref.current) return;
@@ -284,9 +284,9 @@ const ARViewerPage = () => {
                 ar-scale="fixed"
                 ar-placement="wall"
                 camera-controls
+                touch-action="manipulation"
                 auto-rotate
-                shadow-intensity="1"
-                exposure="1"
+                rotation-per-second="45deg"
                 style={{ width: 0, height: 0, position: 'absolute', left: -9999 }}
               />
             )}
