@@ -612,6 +612,19 @@ table {
   display: none; /* Chrome, Safari, and Opera */
 }
 
+/* Dedicated hide-scrollbar class for better control */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, and Opera */
+  width: 0 !important;
+  height: 0 !important;
+}
+
 /* Navbar scrollbars */
 .navbar.overflow-auto {
   scrollbar-width: none;
@@ -619,6 +632,16 @@ table {
 
 .navbar.overflow-auto::-webkit-scrollbar {
   display: none;
+}
+
+.navbar.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.navbar.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Badge responsive */
