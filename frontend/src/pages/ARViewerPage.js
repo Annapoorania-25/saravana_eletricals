@@ -284,9 +284,8 @@ const ARViewerPage = () => {
                 ar-scale="fixed"
                 ar-placement="wall"
                 camera-controls
-                touch-action="manipulation"
-                auto-rotate
-                rotation-per-second="45deg"
+                touch-action="pinch-zoom"
+                disable-zoom={false}
                 style={{ width: 0, height: 0, position: 'absolute', left: -9999 }}
               />
             )}
