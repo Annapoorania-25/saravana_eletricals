@@ -136,7 +136,7 @@ const HomePage = () => {
             </Col>
             <Col lg={6} className="d-none d-lg-block">
               <img 
-                src="https://images.unsplash.com/photo-1581147036324-f1c1d5a6a39a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                src="https://png.pngtree.com/thumb_back/fh260/background/20210910/pngtree-may-day-labor-day-wood-grain-hardware-tool-combination-photograph-with-image_845444.jpg" 
                 alt="Hardware Tools" 
                 className="img-fluid rounded-4 shadow-lg"
                 style={{ maxHeight: '500px', objectFit: 'cover' }}
