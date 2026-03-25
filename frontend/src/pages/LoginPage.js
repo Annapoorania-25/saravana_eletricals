@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Form, Button, Row, Col, Card, Container, Alert } from 'react-bootstrap';
-import { FaEnvelope, FaLock, FaSignInAlt, FaGoogle, FaFacebook, FaTwitter, FaShieldAlt, FaHeadset } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaSignInAlt, FaShieldAlt, FaHeadset } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
@@ -14,6 +14,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -133,8 +134,11 @@ const LoginPage = () => {
                     <Col>
                       <Form.Check
                         type="checkbox"
+                        id="rememberMe"
                         label="Remember me"
-                        className="text-secondary"
+                        checked={rememberMe}
+                        onChange={(e) => setRememberMe(e.target.checked)}
+                        className="text-secondary fw-semibold"
                       />
                     </Col>
                     <Col className="text-end">
@@ -163,25 +167,8 @@ const LoginPage = () => {
                     )}
                   </Button>
 
-                  {/* Social Login */}
-                  <div className="position-relative mb-4">
-                    <hr />
-                    <span className="position-absolute top-50 start-50 translate-middle bg-white px-3 text-secondary">
-                      OR
-                    </span>
-                  </div>
+                  {/* Social Login - Removed */}
 
-                  <div className="d-flex gap-2 justify-content-center">
-                    <Button variant="outline-danger" className="rounded-circle p-3" style={{ width: '50px', height: '50px' }}>
-                      <FaGoogle />
-                    </Button>
-                    <Button variant="outline-primary" className="rounded-circle p-3" style={{ width: '50px', height: '50px' }}>
-                      <FaFacebook />
-                    </Button>
-                    <Button variant="outline-info" className="rounded-circle p-3" style={{ width: '50px', height: '50px' }}>
-                      <FaTwitter />
-                    </Button>
-                  </div>
                 </Form>
 
                 {/* Register Link */}
