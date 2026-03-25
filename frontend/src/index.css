@@ -478,8 +478,7 @@ html, body {
 
 /* Fix navbar overflow issues */
 .navbar-collapse {
-  overflow-y: auto;
-  max-height: calc(100vh - 60px);
+overflow: visible !important;
 }
 
 /* Responsive container padding */
@@ -674,10 +673,7 @@ table {
 /* Mobile-specific adjustments */
 @media (max-width: 575.98px) {
   /* Remove all horizontal margins that could cause overflow */
-  * {
-    margin-left: auto;
-    margin-right: auto;
-  }
+
   
   /* Fix nested element spacing */
   .container-fluid > *,
@@ -701,14 +697,10 @@ table {
 
   /* Section full width */
   section, article, main {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    padding-left: clamp(8px, 2vw, 16px);
-    padding-right: clamp(8px, 2vw, 16px);
+    width: 100%;
+  margin: 0;
+  padding-left: clamp(8px, 2vw, 16px);
+  padding-right: clamp(8px, 2vw, 16px);
   }
 
   /* Card alignment */
@@ -725,8 +717,7 @@ table {
   /* Mobile nav bar must not wrap */
   nav, .navbar {
     width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
   }
 
   /* Search bar responsive */
@@ -750,4 +741,21 @@ table {
     -webkit-appearance: none;
     appearance: none;
   }
+}
+/* Allow dropdown to go outside navbar */
+.navbar,
+.navbar-collapse {
+  overflow: visible !important;
+}
+
+/* Force dropdown to appear above everything */
+.dropdown-menu {
+  position: absolute !important;
+  z-index: 99999 !important;
+}
+
+/* Right align dropdown */
+#username .dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
 }

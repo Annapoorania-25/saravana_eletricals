@@ -30,7 +30,6 @@ const Header = () => {
 
   return (
     <header>
-      {/* Main Navbar */}
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect className="py-3">
         <Container>
           <Navbar.Brand as={Link} to="/" className="fw-bold fs-3">
@@ -40,12 +39,8 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* Search Bar */}
-            <Form 
-              className="d-flex mx-auto flex-fill flex-lg-grow-1"
-              style={{ width: '100%', maxWidth: '400px', margin: '0.5rem auto' }}
-              onSubmit={submitSearchHandler}
-            >
+            {/* Search Bar - Responsive */}
+            <Form className="d-flex mx-auto flex-fill flex-lg-grow-1" style={{ width: '100%', maxWidth: '400px', margin: '0.5rem auto' }} onSubmit={submitSearchHandler}>
               <FormControl
                 type="search"
                 placeholder="Search products..."
@@ -60,16 +55,18 @@ const Header = () => {
             </Form>
 
             <Nav className="ms-auto d-flex flex-column flex-lg-row align-items-start align-lg-items-center gap-1 gap-lg-0">
-              
-              <Nav.Link as={Link} to="/" className="mx-lg-2">
+              {/* Home Link */}
+              <Nav.Link as={Link} to="/" className="mx-lg-2" style={{ padding: '0.25rem 0.5rem' }}>
                 <FaHome /> Home
               </Nav.Link>
 
-              <Nav.Link as={Link} to="/products" className="mx-lg-2">
+              {/* Products Link */}
+              <Nav.Link as={Link} to="/products" className="mx-lg-2" style={{ padding: '0.25rem 0.5rem' }}>
                 <FaBox /> Products
               </Nav.Link>
 
-              <Nav.Link as={Link} to="/cart" className="mx-lg-2 position-relative">
+              {/* Cart Link */}
+              <Nav.Link as={Link} to="/cart" className="mx-lg-2 position-relative" style={{ padding: '0.25rem 0.5rem' }}>
                 <FaShoppingCart /> Cart
                 {cartItems?.length > 0 && (
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -78,27 +75,27 @@ const Header = () => {
                 )}
               </Nav.Link>
 
-              {/* User Section */}
+              {/* User Menu */}
               {userInfo ? (
-                <NavDropdown 
-                  title={
-                    <span>
-                      <FaUser /> {userInfo?.name ? userInfo.name.split(' ')[0] : 'User'}
-                    </span>
-                  } 
-                  id="username"
-                  className="mx-lg-2"
-                >
+                <NavDropdown
+  title={
+    <span>
+      <FaUser /> {userInfo?.name ? userInfo.name.split(' ')[0] : 'User'}
+    </span>
+  }
+  id="username"
+  align="end"
+  menuVariant="light"
+  renderMenuOnMount
+>
                   <NavDropdown.Item as={Link} to="/profile">
                     👤 My Profile
                   </NavDropdown.Item>
-
                   {userInfo.role !== 'admin' && (
                     <NavDropdown.Item as={Link} to="/orders">
                       📦 My Orders
                     </NavDropdown.Item>
                   )}
-
                   {userInfo.role === 'admin' && (
                     <>
                       <NavDropdown.Divider />
@@ -113,7 +110,6 @@ const Header = () => {
                       </NavDropdown.Item>
                     </>
                   )}
-
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     🚪 Logout
@@ -121,10 +117,10 @@ const Header = () => {
                 </NavDropdown>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="/login" className="mx-lg-2">
+                  <Nav.Link as={Link} to="/login" className="mx-lg-2" style={{ padding: '0.25rem 0.5rem' }}>
                     <FaSignInAlt /> Login
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/register" className="mx-lg-2">
+                  <Nav.Link as={Link} to="/register" className="mx-lg-2" style={{ padding: '0.25rem 0.5rem' }}>
                     <FaUserPlus /> Register
                   </Nav.Link>
                 </>
@@ -134,27 +130,27 @@ const Header = () => {
         </Container>
       </Navbar>
 
-      {/* Secondary Navbar (NO SCROLL) */}
+      {/* Secondary Navigation Bar (hidden for admin) */}
       {userInfo?.role !== 'admin' && (
-        <Navbar bg="light" variant="light" className="py-2 shadow-sm">
+        <Navbar bg="light" variant="light" className="py-2 shadow-sm overflow-auto">
           <Container fluid>
-            <Nav className="w-100 d-flex flex-wrap gap-2">
-              <Nav.Link as={Link} to="/products?category=Tools" className="text-dark">
+            <Nav className="w-100 d-flex justify-content-start overflow-auto" style={{ whiteSpace: 'nowrap' }}>
+              <Nav.Link as={Link} to="/products?category=Tools" className="text-dark flex-shrink-0" style={{ padding: '0.25rem 0.75rem' }}>
                 🔧 Tools
               </Nav.Link>
-              <Nav.Link as={Link} to="/products?category=Electrical" className="text-dark">
+              <Nav.Link as={Link} to="/products?category=Electrical" className="text-dark flex-shrink-0" style={{ padding: '0.25rem 0.75rem' }}>
                 ⚡ Electrical
               </Nav.Link>
-              <Nav.Link as={Link} to="/products?category=Plumbing" className="text-dark">
+              <Nav.Link as={Link} to="/products?category=Plumbing" className="text-dark flex-shrink-0" style={{ padding: '0.25rem 0.75rem' }}>
                 💧 Plumbing
               </Nav.Link>
-              <Nav.Link as={Link} to="/products?category=Paint" className="text-dark">
+              <Nav.Link as={Link} to="/products?category=Paint" className="text-dark flex-shrink-0" style={{ padding: '0.25rem 0.75rem' }}>
                 🎨 Paint
               </Nav.Link>
-              <Nav.Link as={Link} to="/products?category=Hardware" className="text-dark">
+              <Nav.Link as={Link} to="/products?category=Hardware" className="text-dark flex-shrink-0" style={{ padding: '0.25rem 0.75rem' }}>
                 🔩 Hardware
               </Nav.Link>
-              <Nav.Link as={Link} to="/products?category=Garden" className="text-dark">
+              <Nav.Link as={Link} to="/products?category=Garden" className="text-dark mx-3">
                 🌱 Garden
               </Nav.Link>
             </Nav>
