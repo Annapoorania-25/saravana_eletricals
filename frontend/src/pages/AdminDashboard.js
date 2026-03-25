@@ -211,7 +211,6 @@ const AdminDashboard = () => {
               <Card.Body className="p-4">
                 <Button as={Link} to="/admin/products" className="w-100 mb-3" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', border: 'none' }}>Manage Products</Button>
                 <Button as={Link} to="/admin/orders" className="w-100 mb-3" style={{ background: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)', border: 'none' }}>View Orders</Button>
-                <Button as={Link} to="/admin/users" className="w-100" style={{ background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)', border: 'none' }}>Manage Users</Button>
               </Card.Body>
             </Card>
 

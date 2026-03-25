@@ -71,13 +71,13 @@ const Footer = () => {
             <h5 className="mb-3 fs-6 fs-md-5">Contact Us</h5>
             <ul className="list-unstyled gap-2 d-flex flex-column">
               <li className="mb-1 text-secondary small">
-                <FaEnvelope className="me-2" /> support@hardwarestore.com
+                <FaEnvelope className="me-2" /> kishoresaravanan37@gmail.com
               </li>
               <li className="mb-1 text-secondary small">
-                <FaPhone className="me-2" /> +1 (555) 123-4567
+                <FaPhone className="me-2" /> +917094442903
               </li>
               <li className="mb-1 text-secondary small">
-                <FaMapMarkerAlt className="me-2" /> 123 Hardware St, City, State
+                <FaMapMarkerAlt className="me-2" /> NO:-14/5, VELLIYANKADU NAAL ROAD, SOUTH MAIN ROAD, TIRUPUR-641604
               </li>
             </ul>
           </Col>

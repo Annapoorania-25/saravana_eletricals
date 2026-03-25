@@ -102,7 +102,7 @@ const ProductListPage = () => {
         <title>Products - Smart Hardware Store</title>
       </Helmet>
 
-      <Container>
+      <Container fluid style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 18px' }}>
         <h1 className="my-4">Products</h1>
 
         <Row>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { FaShoppingCart, FaUser, FaSearch, FaHome, FaBox, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
@@ -8,6 +8,7 @@ import { logout } from '../store/userSlice';
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   
   const { userInfo } = useSelector((state) => state.user);
   const { cartItems } = useSelector((state) => state.cart);
@@ -65,15 +66,17 @@ const Header = () => {
                 <FaBox /> Products
               </Nav.Link>
 
-              {/* Cart Link */}
-              <Nav.Link as={Link} to="/cart" className="mx-lg-2 position-relative" style={{ padding: '0.25rem 0.5rem' }}>
-                <FaShoppingCart /> Cart
-                {cartItems?.length > 0 && (
-                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {cartItems.length}
-                  </span>
-                )}
-              </Nav.Link>
+              {/* Cart Link (hidden on admin pages) */}
+              { !location.pathname.startsWith('/admin') && (
+                <Nav.Link as={Link} to="/cart" className="mx-lg-2 position-relative" style={{ padding: '0.25rem 0.5rem' }}>
+                  <FaShoppingCart /> Cart
+                  {cartItems?.length > 0 && (
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      {cartItems.length}
+                    </span>
+                  )}
+                </Nav.Link>
+              )}
 
               {/* User Menu */}
               {userInfo ? (
